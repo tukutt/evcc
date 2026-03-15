@@ -1,0 +1,14 @@
+template: lektrico
+products:
+  - brand: Lektrico
+    description:
+      generic: 1P7K / 3P22K
+requirements:
+  evcc: ["sponsorship"]
+params:
+  - name: usage
+    choice: ["charge"]
+  - name: host
+render: |
+  type: lektrico
+  host: {{ .host }}
