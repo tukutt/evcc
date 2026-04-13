@@ -279,6 +279,7 @@ func (s *HTTPd) RegisterSystemHandler(site *core.Site, pub publisher, cache *uti
 
 		routes := map[string]route{
 			"auth":               {"POST", "/auth", authHandler},
+			"authmerged":         {"POST", "/auth/{class:[a-z]+}/merge/{id:[0-9.]+}", authHandler},
 			"templates":          {"GET", "/templates/{class:[a-z]+}", templatesHandler},
 			"products":           {"GET", "/products/{class:[a-z]+}", productsHandler},
 			"devices":            {"GET", "/devices/{class:[a-z]+}", devicesConfigHandler},
@@ -295,6 +296,7 @@ func (s *HTTPd) RegisterSystemHandler(site *core.Site, pub publisher, cache *uti
 			"updatesponsortoken": {"POST", "/sponsortoken", updateSponsortokenHandler(pub)},
 			"deletesponsortoken": {"DELETE", "/sponsortoken", deleteSponsorTokenHandler(pub)},
 			"experimental":       {"POST", "/experimental/{value:[01truefalse]+}", boolHandler(setExperimental(pub), getExperimental)},
+			"optimizer":          {"POST", "/optimizer/{value:[01truefalse]+}", boolHandler(setOptimizer(pub), getOptimizer)},
 		}
 
 		// yaml handlers
